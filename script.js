@@ -6,25 +6,31 @@ const choices = {
 
 const weapons = Object.keys(choices);
 
-game();
+const btns = document.querySelectorAll("button");
+for (let btn of btns) {
+	btn.addEventListener("click", () => playRound(btn.textContent, computerPlay()));
+}
+
+
+// game();
 
 function computerPlay(){
 	return weapons[Math.floor(Math.random() * weapons.length)];
 }
 
-function getPlayerSelection(){
-	let playerSelection = prompt("Please enter your choice of rock/paper/scissors.");
-	playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-	while(!weapons.includes(playerSelection)){
-		playerSelection = prompt("That was not a valid selection, please choose from rock/paper/scissors");
-		playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-	}
+// function getPlayerSelection(){
+// 	let playerSelection = prompt("Please enter your choice of rock/paper/scissors.");
+// 	playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+// 	while(!weapons.includes(playerSelection)){
+// 		playerSelection = prompt("That was not a valid selection, please choose from rock/paper/scissors");
+// 		playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+// 	}
 	
-	return playerSelection;
-}
+// 	return playerSelection;
+// }
 
 function playRound(playerSelection, computerSelection){
-	console.log(`You chose ${playerSelection} and the computer chose ${computerSelection}.`)
+	alert(`You chose ${playerSelection} and the computer chose ${computerSelection}.`)
 	if (choices[playerSelection].strongTo === computerSelection){
 		return `Winner! ${playerSelection} beats ${computerSelection}!`
 	}
