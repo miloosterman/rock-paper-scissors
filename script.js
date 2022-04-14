@@ -37,10 +37,10 @@ function playRound(playerSelection, computerSelection){
 }
 
 function game(){
-	for (let i = 0; i < 5; i++){
+	// for (let i = 0; i < 5; i++){
 		let computerSelection = computerPlay();
 		let playerSelection = getPlayerSelection();
 		let result = playRound(playerSelection, computerSelection);
 		console.log(result);
-	}
+	// }
 }
