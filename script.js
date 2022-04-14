@@ -5,6 +5,7 @@ const choices = {
 };
 
 const weapons = Object.keys(choices);
+const gameStatus = document.querySelector(".game-status");
 
 const btns = document.querySelectorAll("button");
 for (let btn of btns) {
@@ -30,16 +31,12 @@ function computerPlay(){
 // }
 
 function playRound(playerSelection, computerSelection){
-	alert(`You chose ${playerSelection} and the computer chose ${computerSelection}.`)
+	gameStatus.textContent = `You chose ${playerSelection} and the computer chose ${computerSelection}.`;
 	if (choices[playerSelection].strongTo === computerSelection){
-		return `Winner! ${playerSelection} beats ${computerSelection}!`
-	}
-
-	if (choices[playerSelection].weakTo === computerSelection){
-		return `You lose... ${computerSelection} beats ${playerSelection}`
-	}
-
-	return `Tie game... No winner between ${playerSelection} and ${computerSelection}. How boring.`
+		 gameStatus.textContent += `Winner! ${playerSelection} beats ${computerSelection}!`;
+	} else if (choices[playerSelection].weakTo === computerSelection){
+		gameStatus.textContent += `You lose... ${computerSelection} beats ${playerSelection}`;
+	} else { gameStatus.textContent += `Tie game... No winner between ${playerSelection} and ${computerSelection}. How boring.`; }
 }
 
 function game(){
