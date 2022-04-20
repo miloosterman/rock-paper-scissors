@@ -1,0 +1,69 @@
+* {
+  /* border: 1px red solid; */
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #D9E4DB;
+  font-family: 'MedievalSharp', cursive;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-bottom: auto;
+}
+
+.selection-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  border: black solid 2px;
+  padding: 1rem;
+}
+
+.selection-container button {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+}
+
+.game-status button {
+  display: flex;
+}
+
+button:hover {
+  transform: scale(1.1); 
+}
+
+.Rock {
+  background-image: url('https://cdn-icons.flaticon.com/png/512/3021/premium/3021697.png?token=exp=1650488345~hmac=1d8b413705b4728d2b9013d4d942f6ab');
+  background-size: cover;
+  border: none;
+}
+
+.Paper {
+  background-image: url('https://cdn-icons.flaticon.com/png/512/2119/premium/2119228.png?token=exp=1650488473~hmac=20d91f84083edb77f501c1b4ce63a040');
+  background-size: cover;
+  border: none;
+}
+
+.Scissors {
+  background-image: url('https://cdn-icons.flaticon.com/png/512/1680/premium/1680373.png?token=exp=1650488499~hmac=7bb558a5b4501447acde1418c2e1bffc');
+  background-size: cover;
+  border: none;
+}
+
+.rounds-container {
+  display: flex;
+}
