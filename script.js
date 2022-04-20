@@ -1,7 +1,7 @@
 const choices = {
-	Rock: {weakTo: "Paper", strongTo: "Scissors"},
-	Paper: {weakTo: "Scissors", strongTo: "Rock"},
-	Scissors: {weakTo: "Rock", strongTo: "Paper"}
+	Princess: {weakTo: "Dragon", strongTo: "Knight"},
+	Dragon: {weakTo: "Knight", strongTo: "Princess"},
+	Knight: {weakTo: "Princess", strongTo: "Dragon"}
 };
 
 const weapons = Object.keys(choices);
@@ -25,12 +25,12 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
 	gameStatus.textContent = `You chose ${playerSelection} and the computer chose ${computerSelection}. `;
 	if (choices[playerSelection].strongTo === computerSelection){
-		 gameStatus.textContent += `Winner! ${playerSelection} beats ${computerSelection}!`;
-		 playerWins++
+		 gameStatus.textContent += generateMessage(playerSelection);
+		 playerWins++;
 	} else if (choices[playerSelection].weakTo === computerSelection){
-			gameStatus.textContent += `You lose... ${computerSelection} beats ${playerSelection}.`;
+			gameStatus.textContent += generateMessage(computerSelection);
 			computerWins++;
-	} else { gameStatus.textContent += `Tie game... No winner between ${playerSelection} and ${computerSelection}. How boring.`; }
+	} else { gameStatus.textContent += generateMessage("tie"); }
 	roundCount.textContent = `Player wins: ${playerWins} | Computer wins: ${computerWins}`;
 	if (computerWins === maxRounds || playerWins === maxRounds){
 		declareWinner();
@@ -43,11 +43,57 @@ function declareWinner(){
 	askToPlayAgain();
 }
 
-function askToPlayAgain(){
-	let playAgainButton = document.createElement("button");
-	playAgainButton.textContent = "Play Again?"
-	gameStatus.appendChild(playAgainButton);
-	roundsPlayed = 0;
-	playerWins = 0;
-	computerWins = 0;
+// function askToPlayAgain(){
+// 	let playAgainButton = document.createElement("button");
+// 	playAgainButton.textContent = "Play Again?"
+// 	gameStatus.appendChild(playAgainButton);
+// 	roundsPlayed = 0;
+// 	playerWins = 0;
+// 	computerWins = 0;
+// }
+
+function generateMessage(winner){
+	if (winner === "tie"){
+		return "tie";
+	}
+
+	const princessVictory = [
+		"The princess leaves this patriarchal system behind, leaving the knight, and pursuing a life of freedom in the woods.",
+		"The princess watches a documentary about Henry the 8th and decides she doesn't like the head of the knight anymore.",
+		"Finding the dragon much more interesting and funny, she stabs the knight and hops onto the dragons back."
+	]
+
+	const dragonVictory = [
+		"The flame breath of the dragon scorches the princess into a pile of ash.",
+		"The dragon picks the princess up in his mighty jaws and imprisons her in a tower.",
+		"The dragon attacks the insecurities of the princess, resulting in debilitating depression."
+	]
+
+	const knightVictory = [
+		"With a fierce thrust of the knight's sword, the dragon falls into a pile of it's own blood, it's hatchlings watching the scene with tears in their eyes.",
+		"An avid poker player, the knight reveals his pocket aces and takes the dragon for all that it is worth.",
+		"The knight casts his peanut butter sandwich at the dragon, knowing that this particular dragon was fatally allergic to peanuts."
+	]
+
+	let victoryMessage;
+
+	switch (winner) {
+		case "Princess":
+			victoryMessage = princessVictory;
+			break;
+		case "Dragon":
+			victoryMessage = dragonVictory;
+			break;
+		case "Knight":
+			victoryMessage = knightVictory;
+			break;
+		default:
+			break;
+	}
+
+	const maxSentences = victoryMessage.length;
+
+	var index = Math.floor(Math.random() * (maxSentences - 1));
+  return victoryMessage[index];
+
 }
