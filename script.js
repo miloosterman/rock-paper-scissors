@@ -15,7 +15,7 @@ let computerWins = 0;
 
 const btns = document.querySelectorAll("button");
 for (let btn of btns) {
-	btn.addEventListener("click", () => playRound(btn.textContent, computerPlay()));
+	btn.addEventListener("click", () => playRound(btn.className, computerPlay()));
 }
 
 function computerPlay(){
@@ -23,15 +23,15 @@ function computerPlay(){
 }
 
 function playRound(playerSelection, computerSelection){
-	gameStatus.textContent = `You chose ${playerSelection} and the computer chose ${computerSelection}.`;
+	gameStatus.textContent = `You chose ${playerSelection} and the computer chose ${computerSelection}. `;
 	if (choices[playerSelection].strongTo === computerSelection){
 		 gameStatus.textContent += `Winner! ${playerSelection} beats ${computerSelection}!`;
 		 playerWins++
 	} else if (choices[playerSelection].weakTo === computerSelection){
-			gameStatus.textContent += `You lose... ${computerSelection} beats ${playerSelection}`;
+			gameStatus.textContent += `You lose... ${computerSelection} beats ${playerSelection}.`;
 			computerWins++;
 	} else { gameStatus.textContent += `Tie game... No winner between ${playerSelection} and ${computerSelection}. How boring.`; }
-	roundCount.textContent = `Player wins = ${playerWins}, Computer wins = ${computerWins}`;
+	roundCount.textContent = `Player wins: ${playerWins} | Computer wins: ${computerWins}`;
 	if (computerWins === maxRounds || playerWins === maxRounds){
 		declareWinner();
 	}
@@ -40,6 +40,13 @@ function playRound(playerSelection, computerSelection){
 function declareWinner(){
 	computerWins > playerWins ? gameStatus.textContent = `Game over! The computer won by ${computerWins} to ${playerWins}, better luck next time!` :
 	gameStatus.textContent = `Congratulations! You beat the computer by ${playerWins} to ${computerWins}!`;
+	askToPlayAgain();
+}
+
+function askToPlayAgain(){
+	let playAgainButton = document.createElement("button");
+	playAgainButton.textContent = "Play Again?"
+	gameStatus.appendChild(playAgainButton);
 	roundsPlayed = 0;
 	playerWins = 0;
 	computerWins = 0;
