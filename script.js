@@ -38,9 +38,12 @@ function playRound(playerSelection, computerSelection){
 }
 
 function declareWinner(){
-	computerWins > playerWins ? gameStatus.textContent = `Game over! The computer won by ${computerWins} to ${playerWins}, better luck next time!` :
-	gameStatus.textContent = `Congratulations! You beat the computer by ${playerWins} to ${computerWins}!`;
-	askToPlayAgain();
+	computerWins > playerWins ? gameStatus.textContent = `Game over! The computer won by ${computerWins} to ${playerWins}, better luck next time! Choose again to start a new game.` :
+	gameStatus.textContent = `Congratulations! You beat the computer by ${playerWins} to ${computerWins}! Choose again to start a new game.`;
+	roundsPlayed = 0;
+	playerWins = 0;
+	computerWins = 0;
+	// askToPlayAgain();
 }
 
 // function askToPlayAgain(){
